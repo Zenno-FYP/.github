@@ -35,6 +35,9 @@ Zenno combines local activity intelligence with cloud analytics and AI assistanc
   - peer discovery and engagement
   - direct chat and notifications
 
+- **Operator admin (web)**
+  - website **`/admin`** for aggregate stats, user directory, and chat report moderation (`isAdmin` in MongoDB + Firebase session)
+
 - **Cross-Platform Experience**
   - web app
   - mobile app
@@ -47,7 +50,7 @@ Zenno is delivered as a multi-repository platform:
 - `website` - React + Vite frontend for landing pages and product experience
 - `mobile_app` - Flutter mobile app for analytics, profile, chat, and notifications
 - `desktop-agent` - local Windows agent for activity capture, context detection, and nudge orchestration
-- `backend` - NestJS API for auth-protected data, analytics endpoints, chat, notifications, and preferences
+- `backend` - NestJS API for auth-protected data, analytics endpoints, chat, notifications, preferences, and **`/api/v1/admin`** for operators
 - `nlp` - FastAPI-based nudge generation service with local GGUF model runtime and training pipeline
 - `.github` - organization-level docs and standards
 
@@ -131,6 +134,7 @@ Zenno is delivered as a multi-repository platform:
 Current production hosting (as maintained by the Zenno team):
 
 - **Website:** [https://zenno.dev](https://zenno.dev)
+- **Admin console** (operators; same app, requires `isAdmin` in MongoDB): [https://zenno.dev/admin](https://zenno.dev/admin)
 - **Backend API docs:** [https://api.zenno.dev/api/docs](https://api.zenno.dev/api/docs)
 - **NLP API docs:** [https://nlp.zenno.dev/docs](https://nlp.zenno.dev/docs)
 
@@ -147,4 +151,4 @@ If you want to contribute or deploy a specific component, start with that repoâ€
 
 ---
 
-Last Updated: 2026-04-23
+Last Updated: 2026-05-01
