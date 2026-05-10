@@ -129,6 +129,47 @@ Zenno is delivered as a multi-repository platform:
 4. Website and mobile app present insights, settings, and collaboration flows.
 5. Notifications and chat keep users engaged across sessions.
 
+### Platform architecture
+
+```mermaid
+flowchart TB
+  subgraph clients["Clients"]
+    Web["website\nReact 路 Vite"]
+    Mobile["mobile_app\nFlutter"]
+    Desktop["desktop-agent\nPython 路 Windows"]
+  end
+
+  subgraph identity["Identity & messaging"]
+    Firebase["Firebase\nAuth 路 FCM"]
+  end
+
+  subgraph cloud["Zenno services"]
+    Backend["backend\nNestJS 路 MongoDB\nREST 路 Socket.IO /chat"]
+    NLP["nlp\nFastAPI 路 GGUF\n/generate"]
+    Cloudinary["Cloudinary\nprofile images"]
+  end
+
+  Web --> Firebase
+  Mobile --> Firebase
+  Desktop --> Firebase
+
+  Web --> Backend
+  Mobile --> Backend
+  Desktop --> Backend
+
+  Desktop --> NLP
+
+  Backend --> Cloudinary
+
+  subgraph data["Data"]
+    MongoDB[("MongoDB\nprofiles 路 activity 路 chat 路 notifications")]
+    SQLite[("SQLite\nlocal agent store")]
+  end
+
+  Backend --> MongoDB
+  Desktop --> SQLite
+```
+
 ## Current Deployment Endpoints
 
 Current production hosting (as maintained by the Zenno team):
@@ -151,4 +192,4 @@ If you want to contribute or deploy a specific component, start with that repo鈥
 
 ---
 
-Last Updated: 2026-05-01
+Last Updated: 2026-05-11
