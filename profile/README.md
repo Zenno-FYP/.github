@@ -10,172 +10,137 @@ We built Zenno to help developers improve focus, reduce burnout risk, and make c
 
 Zenno combines local activity intelligence with cloud analytics and AI assistance to provide:
 
-- clear visibility into where time goes (apps, projects, languages, contexts)
-- personal productivity trends over time
-- context-aware nudges for healthier and more focused work sessions
-- social and collaboration surfaces (profiles, peers, chat)
+- Clear visibility into where time goes (apps, projects, languages, and contexts).
+- Personal productivity trends over time.
+- Context-aware nudges for healthier and more focused work sessions.
+- Social and collaboration surfaces (profiles, peers, and chat).
 
 ## Core Product Features
 
 - **Developer Analytics Dashboard**
-  - performance and behavior metrics
-  - tool usage and language distribution
-  - project and skills insights
+  - Performance and behavior metrics.
+  - Tool usage and language distribution.
+  - Project and skills insights.
 
 - **Context Intelligence**
-  - classifies work states like Flow, Debugging, Research, Communication, and Distracted
-  - combines heuristic and ML-assisted signals
+  - Classifies work states like Flow, Debugging, Research, Communication, and Distracted.
+  - Combines heuristic and ML-assisted signals.
 
 - **Zenno Agent Nudges**
-  - personalized nudges based on recent activity and wellbeing context
-  - resilient generation pipeline with fallback behavior
+  - Personalized nudges based on recent activity and wellbeing context.
+  - Resilient generation pipeline with fallback behavior.
 
 - **Profile and Community**
-  - public profile experience
-  - peer discovery and engagement
-  - direct chat and notifications
+  - Public profile experience.
+  - Peer discovery and engagement.
+  - Direct chat and notifications.
 
-- **Operator admin (web)**
-  - website **`/admin`** for aggregate stats, user directory, and chat report moderation (`isAdmin` in MongoDB + Firebase session)
+- **Operator Admin (Web)**
+  - Website **`/admin`** for aggregate stats, user directory, and chat report moderation (`isAdmin` in MongoDB and Firebase session).
 
 - **Cross-Platform Experience**
-  - web app
-  - mobile app
-  - desktop agent runtime
+  - Web app.
+  - Mobile app.
+  - Desktop agent runtime.
 
 ## What We Built
 
 Zenno is delivered as a multi-repository platform:
 
-- `website` - React + Vite frontend for landing pages and product experience
-- `mobile_app` - Flutter mobile app for analytics, profile, chat, and notifications
-- `desktop-agent` - local Windows agent for activity capture, context detection, and nudge orchestration
-- `backend` - NestJS API for auth-protected data, analytics endpoints, chat, notifications, preferences, and **`/api/v1/admin`** for operators
-- `nlp` - FastAPI-based nudge generation service with local GGUF model runtime and training pipeline
-- `.github` - organization-level docs and standards
+- `website` — React + Vite frontend for landing pages and the product experience.
+- `mobile_app` — Flutter mobile app for analytics, profile, chat, and notifications.
+- `desktop-agent` — Local Windows agent for activity capture, context detection (including on-device ML), and nudge orchestration.
+- `backend` — NestJS API for auth-protected data, analytics endpoints, chat, notifications, preferences, and **`/api/v1/admin`** for operators.
+- `nlp` — FastAPI-based nudge generation service with local GGUF model runtime and training pipeline.
+- `.github` — Organization-level docs and standards.
 
 ## Tech Stack and Tools
 
 ### Frontend (Web)
 
-- React 18 + TypeScript
-- Vite build tooling
-- Zustand (state management)
-- Axios (API client)
-- React Router
-- Socket.IO client
-- Firebase Web SDK (authentication + web messaging integration)
+- React 18 + TypeScript.
+- Vite build tooling.
+- Zustand (state management).
+- Axios (API client).
+- React Router.
+- Socket.IO client.
+- Firebase Web SDK (authentication and web messaging integration).
 
 ### Mobile App
 
-- Flutter + Dart
-- Riverpod (state management/DI)
-- GoRouter (navigation)
-- Dio (network layer)
-- Firebase Core/Auth/Messaging
-- flutter_local_notifications (local notification presentation)
-- Socket.IO client
+- Flutter + Dart.
+- Riverpod (state management and dependency injection).
+- GoRouter (navigation).
+- Dio (network layer).
+- Firebase Core, Auth, and Messaging.
+- flutter_local_notifications (local notification presentation).
+- Socket.IO client.
 
 ### Backend API
 
-- NestJS 11 + TypeScript
-- MongoDB (primary cloud database)
-- Mongoose ODM (`@nestjs/mongoose`)
-- Firebase Admin SDK (ID token verification)
-- Socket.IO gateway (`@nestjs/websockets`)
-- Swagger/OpenAPI (`@nestjs/swagger`)
-- Schedule/cron jobs (`@nestjs/schedule`)
-- Cloudinary integration (profile image uploads)
+- NestJS 11 + TypeScript.
+- MongoDB (primary cloud database).
+- Mongoose ODM (`@nestjs/mongoose`).
+- Firebase Admin SDK (ID token verification).
+- Socket.IO gateway (`@nestjs/websockets`).
+- Swagger and OpenAPI (`@nestjs/swagger`).
+- Scheduled and cron jobs (`@nestjs/schedule`).
+- Cloudinary integration (profile image uploads).
 
 ### Desktop Agent Runtime
 
-- Python
-- SQLite (local first data store on user machine)
-- pywebview (desktop authentication UI)
-- requests + keyring (API + token persistence)
-- scikit-learn / XGBoost (context classification path)
-- pandas/numpy/joblib (data processing/model utilities)
+- Python.
+- SQLite (local-first data store on the user machine).
+- pywebview (desktop authentication UI).
+- requests and keyring (API access and token persistence).
+- scikit-learn and XGBoost (on-device context classification).
+- pandas, NumPy, and joblib (data processing and model utilities).
 
 ### NLP / AI Service
 
-- FastAPI + Uvicorn
-- Pydantic schemas
-- llama-cpp-python (GGUF inference)
-- Qwen2.5-0.5B-Instruct GGUF model family
-- LoRA fine-tuning and merge/export pipeline
+- FastAPI and Uvicorn.
+- Pydantic schemas.
+- llama-cpp-python (GGUF inference).
+- Qwen2.5-0.5B-Instruct GGUF model family.
+- LoRA fine-tuning and merge/export pipeline.
 
 ### Authentication and Notifications
 
-- **Authentication:** Firebase Authentication across web, mobile, and desktop flows
-- **Push notifications (web):** Firebase Cloud Messaging + service worker
-- **Push notifications (mobile):** Firebase Messaging + local notification rendering
-- **In-app notifications:** backend-managed notification APIs + unread state + preferences
+- **Authentication:** Firebase Authentication across web, mobile, and desktop flows.
+- **Push notifications (Web):** Firebase Cloud Messaging and a service worker.
+- **Push notifications (Mobile):** Firebase Messaging and local notification rendering.
+- **In-app notifications:** Backend-managed notification APIs, unread state, and preferences.
 
 ### Infrastructure, DevOps, and Tooling
 
-- Git + GitHub (multi-repo platform)
-- GitHub Actions (CI/CD pipelines)
-- Docker + Docker Compose
-- AWS EC2 deployment target (current backend + nlp deployment setup)
-- npm / Node.js tooling
-- Python virtual environments + pip
-- Flutter toolchain
+- Git and GitHub (multi-repository platform).
+- GitHub Actions (CI and CD pipelines).
+- Docker and Docker Compose.
+- AWS EC2 deployment target (current backend and NLP deployment setup).
+- npm and Node.js tooling.
+- Python virtual environments and pip.
+- Flutter toolchain.
 
 ## How Zenno Works (At a Glance)
 
-1. Desktop agent captures local activity and behavioral signals.
-2. Backend API stores, aggregates, and serves analytics data.
-3. NLP service generates nudge text with fallback safety.
-4. Website and mobile app present insights, settings, and collaboration flows.
+1. The desktop agent captures local activity and behavioral signals.
+2. The backend API stores, aggregates, and serves analytics data.
+3. The NLP service generates nudge text with fallback safety.
+4. The website and mobile app present insights, settings, and collaboration flows.
 5. Notifications and chat keep users engaged across sessions.
 
-### Platform architecture
+### Platform Architecture
 
-```mermaid
-flowchart TB
-  subgraph clients["Clients"]
-    Web["website\nReact · Vite"]
-    Mobile["mobile_app\nFlutter"]
-    Desktop["desktop-agent\nPython · Windows"]
-  end
-
-  subgraph identity["Identity & messaging"]
-    Firebase["Firebase\nAuth · FCM"]
-  end
-
-  subgraph cloud["Zenno services"]
-    Backend["backend\nNestJS · MongoDB\nREST · Socket.IO /chat"]
-    NLP["nlp\nFastAPI · GGUF\n/generate"]
-    Cloudinary["Cloudinary\nprofile images"]
-  end
-
-  Web --> Firebase
-  Mobile --> Firebase
-  Desktop --> Firebase
-
-  Web --> Backend
-  Mobile --> Backend
-  Desktop --> Backend
-
-  Desktop --> NLP
-
-  Backend --> Cloudinary
-
-  subgraph data["Data"]
-    MongoDB[("MongoDB\nprofiles · activity · chat · notifications")]
-    SQLite[("SQLite\nlocal agent store")]
-  end
-
-  Backend --> MongoDB
-  Desktop --> SQLite
-```
+![Zenno platform architecture](zenno-platform-architecture.png)
 
 ## Current Deployment Endpoints
 
-Current production hosting (as maintained by the Zenno team):
+> **Project status:** Zenno is a **student project**. It is deployed on **AWS EC2** using **free or promotional credits**. **URLs below are not always live:** instances may be stopped to save credits, or endpoints may be unavailable when credits run out.
+
+When the deployment is up, services are typically reachable at:
 
 - **Website:** [https://zenno.dev](https://zenno.dev)
-- **Admin console** (operators; same app, requires `isAdmin` in MongoDB): [https://zenno.dev/admin](https://zenno.dev/admin)
+- **Admin Console** (operators; same app; requires `isAdmin` in MongoDB): [https://zenno.dev/admin](https://zenno.dev/admin)
 - **Backend API docs:** [https://api.zenno.dev/api/docs](https://api.zenno.dev/api/docs)
 - **NLP API docs:** [https://nlp.zenno.dev/docs](https://nlp.zenno.dev/docs)
 
@@ -183,13 +148,13 @@ Current production hosting (as maintained by the Zenno team):
 
 Each repository contains its own detailed technical README with:
 
-- setup and run instructions
-- environment variables and secrets guidance
-- architecture and module-level details
-- CI/CD and deployment specifics (where applicable)
+- Setup and run instructions.
+- Environment variables and secrets guidance.
+- Architecture and module-level details.
+- CI/CD and deployment specifics (where applicable).
 
-If you want to contribute or deploy a specific component, start with that repo’s README.
+If you want to contribute or deploy a specific component, start with that repository’s README.
 
 ---
 
-Last Updated: 2026-05-11
+Last Updated: 2026-05-15
